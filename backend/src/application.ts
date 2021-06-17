@@ -4,7 +4,6 @@ import { notFoundController } from './controllers/not-found';
 
 const app = express();
 
-app.use(careRecipientController);
-app.use(notFoundController);
+app.use(careRecipientController, notFoundController);
 
 export default app;
