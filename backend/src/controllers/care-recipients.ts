@@ -1,10 +1,18 @@
 import * as express from 'express';
+import { getAllCareRecipients } from '../services/care-recipient';
 
 export const careRecipientsController = express.Router();
 
 careRecipientsController
-  .get('/care-recipients', (_req, res) => {
-    res.status(200).json({ data: 'A list of all care recipients' });
+  .get('/care-recipients', async (_req, res) => {
+    try {
+      const careRecipients = await getAllCareRecipients();
+      res.status(200).json(careRecipients);
+    } catch (error) {
+      res
+        .status(error.statusCode || 500)
+        .json({ message: error.message || 'Unknown error' });
+    }
   })
   .get('/care-recipients/:careRecipientId', (req, res) => {
     res.status(200).json({
