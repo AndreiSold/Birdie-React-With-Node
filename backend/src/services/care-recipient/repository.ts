@@ -16,7 +16,7 @@ export const executeQuery = async (query: string) => {
         }
       });
     });
-  } catch (err) {
-    throwAndLogError(err.message, 500);
+  } catch (errorMessage) {
+    throwAndLogError(errorMessage, 500);
   }
 };
