@@ -1,9 +1,9 @@
 import * as express from 'express';
-import { careRecipientController } from './controllers/care-recipient';
+import { careRecipientsController } from './controllers/care-recipients';
 import { notFoundController } from './controllers/not-found';
 
 const app = express();
 
-app.use(careRecipientController, notFoundController);
+app.use(careRecipientsController, notFoundController);
 
 export default app;

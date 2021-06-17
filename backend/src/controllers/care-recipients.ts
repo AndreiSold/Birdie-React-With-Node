@@ -1,8 +1,8 @@
 import * as express from 'express';
 
-export const careRecipientController = express.Router();
+export const careRecipientsController = express.Router();
 
-careRecipientController
+careRecipientsController
   .get('/care-recipients', (_req, res) => {
     res.status(200).json({ data: 'A list of all care recipients' });
   })
