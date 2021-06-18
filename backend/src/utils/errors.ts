@@ -1,4 +1,5 @@
-export const throwAndLogError = (message: string, statusCode: number) => {
+export const throwAndLogError = (message: string, statusCode: number): void => {
+  /* eslint-disable no-console */
   console.error(message);
   throw new HTTPError(message, statusCode);
 };
@@ -15,7 +16,7 @@ export const wrapRequestInExceptionHandler = async (
   req: any,
   res: any,
   requestHandler: (req: any, res: any) => void
-) => {
+): Promise<void> => {
   try {
     await requestHandler(req, res);
   } catch (error) {

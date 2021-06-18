@@ -1,5 +1,5 @@
-import { getDatabasePool } from '../../utils/database';
-import { throwAndLogError } from '../../utils/errors';
+import { getDatabasePool } from './connnection-pool';
+import { throwAndLogError } from '../utils/errors';
 
 export const executeQuery = async (query: string) => {
   const databasePool = getDatabasePool();
