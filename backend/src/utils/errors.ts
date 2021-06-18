@@ -12,7 +12,7 @@ export class HTTPError extends Error {
   }
 }
 
-export const wrapRequestInExceptionHandler = async (
+export const wrapRequestProcessingInExceptionHandler = async (
   req: any,
   res: any,
   requestHandler: (req: any, res: any) => void
