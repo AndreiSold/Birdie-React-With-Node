@@ -39,8 +39,8 @@ module.exports = {
       {
         singleQuote: true,
         semi: true,
-        endOfLine: auto
-      },
+        endOfLine: 'auto'
+      }
     ],
     '@typescript-eslint/ban-types': 'warn',
     'prefer-rest-params': 'warn',
