@@ -1,48 +1,54 @@
 import { CareRecipientDto } from '../../dtos/care-recipient-dto';
 import { CareRecipientIdDto } from '../../dtos/care-recipient-id-dto';
+import { EventDto } from '../../dtos/event-dto';
+import { Event } from '../../models/event.model';
 import { MoodObservationDto } from '../../dtos/mood-observation-dto';
 import { MoodObservationEntryDto } from '../../dtos/mood-observation-entry-dto';
-import { Mood } from '../../enums/mood';
-import { generateRandomFullName } from '../../utils/name-generator';
 import {
   SELECT_ALL_CARE_RECIPIENTS_IDS,
+  SELECT_ALL_EVENTS_FOR_RECIPIENT_ID,
   SELECT_ALL_MOOD_OBSERVATIONS_FOR_RECIPIENT_ID,
 } from './queries';
 import { executeQuery } from './repository';
+import {
+  mapCareRecipientIdDtosToCareRecipientDtos,
+  mapEventsToEventDtos,
+  mapMoodObservationEntryDtosToMoodObservationDtos,
+} from './mapper';
 
 export const getAllCareRecipients = async (): Promise<CareRecipientDto[]> => {
-  const results: CareRecipientIdDto[] = (await executeQuery(
+  const careRecipientIdDtos: CareRecipientIdDto[] = (await executeQuery(
     SELECT_ALL_CARE_RECIPIENTS_IDS
   )) as CareRecipientIdDto[];
 
-  const careRecipients: CareRecipientDto[] = [];
-  for (const result of results) {
-    careRecipients.push({
-      id: result.care_recipient_id,
-      fullName: generateRandomFullName(),
-    });
-  }
-
-  return careRecipients;
+  return mapCareRecipientIdDtosToCareRecipientDtos(careRecipientIdDtos);
 };
 
 export const getMoodObservationsForCareRecipientId = async (
   careRecipientId: string
 ): Promise<MoodObservationDto[]> => {
-  const results: MoodObservationEntryDto[] = (await executeQuery(
-    SELECT_ALL_MOOD_OBSERVATIONS_FOR_RECIPIENT_ID.replace(
+  const moodObservationEntryDtos: MoodObservationEntryDto[] =
+    (await executeQuery(
+      SELECT_ALL_MOOD_OBSERVATIONS_FOR_RECIPIENT_ID.replace(
+        ':careRecipientId',
+        careRecipientId
+      )
+    )) as MoodObservationEntryDto[];
+
+  return mapMoodObservationEntryDtosToMoodObservationDtos(
+    moodObservationEntryDtos
+  );
+};
+
+export const getEventsForCareRecipientId = async (
+  careRecipientId: string
+): Promise<EventDto[]> => {
+  const events: Event[] = (await executeQuery(
+    SELECT_ALL_EVENTS_FOR_RECIPIENT_ID.replace(
       ':careRecipientId',
       careRecipientId
     )
-  )) as MoodObservationEntryDto[];
+  )) as Event[];
 
-  const moodObservations: MoodObservationDto[] = [];
-  for (const result of results) {
-    moodObservations.push({
-      timestamp: result.timestamp,
-      mood: (JSON.parse(result.payload) as any).mood as Mood,
-    });
-  }
-
-  return moodObservations;
+  return mapEventsToEventDtos(events);
 };
