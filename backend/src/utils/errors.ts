@@ -15,10 +15,10 @@ export class HTTPError extends Error {
 export const wrapRequestProcessingInExceptionHandler = async (
   req: any,
   res: any,
-  requestHandler: (req: any, res: any) => void
+  requestProcessingFunction: (req: any, res: any) => void
 ): Promise<void> => {
   try {
-    await requestHandler(req, res);
+    await requestProcessingFunction(req, res);
   } catch (error) {
     res
       .status(error.statusCode || 500)
