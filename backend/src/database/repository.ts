@@ -1,7 +1,7 @@
-import { getDatabasePool } from './connnection-pool';
+import { getDatabasePool } from './connection-pool';
 import { throwAndLogError } from '../utils/errors';
 
-export const executeQuery = async (query: string) => {
+export const executeQuery = async (query: string): Promise<any> => {
   const databasePool = getDatabasePool();
 
   try {

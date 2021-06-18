@@ -3,7 +3,7 @@ import { Pool } from 'mysql';
 
 let databasePool: Pool;
 
-export const getDatabasePool = () => {
+export const getDatabasePool = (): Pool => {
   if (!databasePool) {
     databasePool = mysql.createPool({
       host: process.env.DATABASE_HOST,

@@ -1,3 +1,5 @@
+import { Request, Response } from 'express';
+
 export const throwAndLogError = (message: string, statusCode: number): void => {
   /* eslint-disable no-console */
   console.error(message);
@@ -13,8 +15,8 @@ export class HTTPError extends Error {
 }
 
 export const wrapRequestProcessingInExceptionHandler = async (
-  req: any,
-  res: any,
+  req: Request,
+  res: Response,
   requestProcessingFunction: (req: any, res: any) => void
 ): Promise<void> => {
   try {

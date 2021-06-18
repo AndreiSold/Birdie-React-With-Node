@@ -37,7 +37,7 @@ const parseAttribute = (attribute: any): string => {
 export const generateMessageForEventType = (
   eventType: EventType,
   payload: string
-) => {
+): string => {
   const payloadObject = JSON.parse(payload) as any;
 
   if (!payloadObject || Object.keys(payloadObject).length === 0) {

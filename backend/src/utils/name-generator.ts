@@ -29,6 +29,6 @@ export const generateRandomFullName = (): string => {
   } ${brittishLastNames[generateRandomInt(0, brittishLastNames.length - 1)]}`;
 };
 
-const generateRandomInt = (min: number, max: number) => {
+const generateRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
