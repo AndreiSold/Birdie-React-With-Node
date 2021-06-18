@@ -5,7 +5,7 @@ import {
   getEventsForCareRecipientId,
   getMoodObservationsForCareRecipientId,
 } from '../services/event';
-import { wrapRequestProcessingInExceptionHandler } from '../utils/errors';
+import { handleError } from '../utils/errors';
 
 export const eventsController = express.Router();
 const eventsBasePath = '/events';
@@ -13,32 +13,29 @@ const eventsBasePath = '/events';
 eventsController
   .get(
     `${eventsBasePath}/care-recipient/:careRecipientId/moods`,
-    async (req, res) => {
-      await wrapRequestProcessingInExceptionHandler(
-        req,
-        res,
-        async (req: any, res: any) => {
+    (req, res) => {
+      void (async (): Promise<void> => {
+        try {
           const moods: MoodObservationDto[] =
             await getMoodObservationsForCareRecipientId(
               req.params.careRecipientId
             );
           res.status(200).json(moods);
+        } catch (error) {
+          handleError(res, error);
         }
-      );
+      })();
     }
   )
-  .get(
-    `${eventsBasePath}/care-recipient/:careRecipientId`,
-    async (req, res) => {
-      await wrapRequestProcessingInExceptionHandler(
-        req,
-        res,
-        async (req: any, res: any) => {
-          const events: EventDto[] = await getEventsForCareRecipientId(
-            req.params.careRecipientId
-          );
-          res.status(200).json(events);
-        }
-      );
-    }
-  );
+  .get(`${eventsBasePath}/care-recipient/:careRecipientId`, (req, res) => {
+    void (async (): Promise<void> => {
+      try {
+        const events: EventDto[] = await getEventsForCareRecipientId(
+          req.params.careRecipientId
+        );
+        res.status(200).json(events);
+      } catch (error) {
+        handleError(res, error);
+      }
+    })();
+  });

@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
 export const throwAndLogError = (message: string, statusCode: number): void => {
   /* eslint-disable no-console */
@@ -14,16 +14,8 @@ export class HTTPError extends Error {
   }
 }
 
-export const wrapRequestProcessingInExceptionHandler = async (
-  req: Request,
-  res: Response,
-  requestProcessingFunction: (req: any, res: any) => void
-): Promise<void> => {
-  try {
-    await requestProcessingFunction(req, res);
-  } catch (error) {
-    res
-      .status(error.statusCode || 500)
-      .json({ message: error.message || 'Unknown error' });
-  }
+export const handleError = (res: Response, error: Error | HTTPError): void => {
+  res
+    .status((error as any).statusCode || 500)
+    .json({ message: error.message || 'Unknown error' });
 };
