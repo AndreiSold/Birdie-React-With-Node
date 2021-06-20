@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
 
-export const TestParagraph = styled(Typography)`
+const StyledTestParagraph = styled(Typography)`
   ${({ theme }) => `
   color: ${theme.palette.secondary.main};
   background-color: #fff;
@@ -11,3 +11,7 @@ export const TestParagraph = styled(Typography)`
   font-family: 'Roboto';
 `}
 `;
+
+export const TestParagraph = () => {
+  return <StyledTestParagraph>Test paragraph</StyledTestParagraph>;
+};

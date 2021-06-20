@@ -10,6 +10,11 @@ import { theme } from './AppTheme';
 import { ThemeProvider } from 'styled-components';
 import SideNavigationBar from './components/SideNavigationBar';
 import { TestParagraph } from './components/TestParagraph';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
+import routes from './routes';
+import store, { history } from './store';
 
 const App = () => {
   return (
@@ -18,10 +23,25 @@ const App = () => {
         <MuiThemeProvider theme={theme}>
           <ThemeProvider theme={theme}>
             <CssBaseline>
-              <Box display='flex'>
-                <SideNavigationBar></SideNavigationBar>
-                <TestParagraph>Test paragraph</TestParagraph>
-              </Box>
+              <Provider store={store}>
+                <ConnectedRouter history={history}>
+                  <Box display='flex'>
+                    <SideNavigationBar></SideNavigationBar>
+                    <Switch>
+                      <Route path={routes.homepage} component={TestParagraph} />
+                      <Route
+                        path={routes.careRecipients.base}
+                        component={TestParagraph}
+                      />
+                      <Route
+                        path={routes.careRecipients.individual}
+                        component={TestParagraph}
+                      />
+                      <Route path={routes.contact} component={TestParagraph} />
+                    </Switch>
+                  </Box>
+                </ConnectedRouter>
+              </Provider>
             </CssBaseline>
           </ThemeProvider>
         </MuiThemeProvider>
