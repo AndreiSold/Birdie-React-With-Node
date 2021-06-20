@@ -14,12 +14,15 @@ import PeopleIcon from '@material-ui/icons/People';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 import {
   makeStyles,
   useTheme,
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
+import routes from '../routes';
 
 interface NavigationItem {
   text: string;
@@ -115,11 +118,16 @@ const navigationGroups: NavigationGroup[] = [
   {
     title: 'Pages',
     items: [
-      { text: 'Homepage', icon: <HomeIcon />, route: '/', isAnchor: false },
+      {
+        text: 'Homepage',
+        icon: <HomeIcon />,
+        route: routes.homepage,
+        isAnchor: false,
+      },
       {
         text: 'Care Recipients',
         icon: <PeopleIcon />,
-        route: '/care-recipients',
+        route: routes.careRecipients.base,
         isAnchor: false,
       },
     ],
@@ -136,7 +144,7 @@ const navigationGroups: NavigationGroup[] = [
       {
         text: 'Contact info',
         icon: <ContactMailIcon />,
-        route: '/contact',
+        route: routes.contact,
         isAnchor: false,
       },
     ],
@@ -146,6 +154,7 @@ const navigationGroups: NavigationGroup[] = [
 export default function SideNavigationBar() {
   const classes = useStyles();
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -169,6 +178,13 @@ export default function SideNavigationBar() {
                 button
                 key={navigationItem.text}
                 className={classes.item}
+                onClick={() => {
+                  if (navigationItem.isAnchor) {
+                    window.open(navigationItem.route);
+                  } else {
+                    dispatch(push(navigationItem.route));
+                  }
+                }}
               >
                 <ListItemIcon className={classes.itemIcon}>
                   {navigationItem.icon}
