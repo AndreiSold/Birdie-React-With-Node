@@ -15,6 +15,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import routes from './routes';
 import store, { history } from './store';
+import Homepage from './pages/Homepage';
+import CareRecipients from './pages/CareRecipients';
+import Contact from './pages/Contact';
 
 const App = () => {
   return (
@@ -28,16 +31,20 @@ const App = () => {
                   <Box display='flex'>
                     <SideNavigationBar></SideNavigationBar>
                     <Switch>
-                      <Route path={routes.homepage} component={TestParagraph} />
+                      <Route
+                        exact
+                        path={routes.homepage}
+                        component={Homepage}
+                      />
                       <Route
                         path={routes.careRecipients.base}
-                        component={TestParagraph}
+                        component={CareRecipients}
                       />
                       <Route
                         path={routes.careRecipients.individual}
                         component={TestParagraph}
                       />
-                      <Route path={routes.contact} component={TestParagraph} />
+                      <Route path={routes.contact} component={Contact} />
                     </Switch>
                   </Box>
                 </ConnectedRouter>
