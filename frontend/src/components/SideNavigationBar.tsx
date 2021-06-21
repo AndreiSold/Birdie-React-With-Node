@@ -183,6 +183,7 @@ export default function SideNavigationBar() {
                     window.open(navigationItem.route);
                   } else {
                     dispatch(push(navigationItem.route));
+                    setMobileOpen(false);
                   }
                 }}
               >
