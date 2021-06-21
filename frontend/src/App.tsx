@@ -5,11 +5,11 @@ import {
   NoSsr,
   StylesProvider,
   Box,
+  Container,
 } from '@material-ui/core';
 import { theme } from './AppTheme';
 import { ThemeProvider } from 'styled-components';
 import SideNavigationBar from './components/SideNavigationBar';
-import { TestParagraph } from './components/TestParagraph';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
@@ -18,6 +18,8 @@ import store, { history } from './store';
 import Homepage from './pages/Homepage';
 import CareRecipients from './pages/CareRecipients';
 import Contact from './pages/Contact';
+import CareRecipient from './pages/CareRecipient';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -30,28 +32,32 @@ const App = () => {
                 <ConnectedRouter history={history}>
                   <Box display='flex'>
                     <SideNavigationBar></SideNavigationBar>
-                    <Box
-                      minWidth='calc(100% - 250px)'
-                      minHeight='100%'
-                      paddingTop={12}
-                    >
-                      <Switch>
-                        <Route
-                          exact
-                          path={routes.homepage}
-                          component={Homepage}
-                        />
-                        <Route
-                          path={routes.careRecipients.base}
-                          component={CareRecipients}
-                        />
-                        <Route
-                          path={routes.careRecipients.individual}
-                          component={TestParagraph}
-                        />
-                        <Route path={routes.contact} component={Contact} />
-                      </Switch>
-                    </Box>
+                    <Container>
+                      <Box
+                        minWidth='calc(100% - 250px)'
+                        minHeight='100%'
+                        paddingTop={12}
+                      >
+                        <Switch>
+                          <Route
+                            exact
+                            path={routes.homepage}
+                            component={Homepage}
+                          />
+                          <Route
+                            exact
+                            path={routes.careRecipients.base}
+                            component={CareRecipients}
+                          />
+                          <Route
+                            path={routes.careRecipients.individual}
+                            component={CareRecipient}
+                          />
+                          <Route path={routes.contact} component={Contact} />
+                          <Route path='*' component={NotFound} />
+                        </Switch>
+                      </Box>
+                    </Container>
                   </Box>
                 </ConnectedRouter>
               </Provider>
