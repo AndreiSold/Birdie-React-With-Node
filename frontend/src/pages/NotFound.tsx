@@ -1,10 +1,16 @@
 import { Box } from '@material-ui/core';
-import CustomBackgroundImage from '../styled-components/CustomBackgroundImage';
+import BackgroundImage from '../styled-components/BackgroundImage';
 
 const NotFound: React.FC = () => {
   return (
-    <Box display='flex' justifyContent='center'>
-      <CustomBackgroundImage path='/images/404.png' />
+    <Box
+      display='flex'
+      justifyContent='center'
+      width='100%'
+      minHeight='350px'
+      marginTop='100px'
+    >
+      <BackgroundImage path='/images/404.png' />
     </Box>
   );
 };

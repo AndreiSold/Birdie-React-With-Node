@@ -44,15 +44,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: drawerWidth,
         flexShrink: 0,
-      },
-    },
-    appBar: {
-      [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
       },
     },
     menuButton: {
@@ -64,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
         height: '2em',
         width: '2em',
       },
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         display: 'none',
       },
     },
@@ -229,7 +223,7 @@ export default function SideNavigationBar() {
         <MenuIcon />
       </IconButton>
       <nav className={classes.drawer} aria-label='mailbox folders'>
-        <Hidden smUp implementation='css'>
+        <Hidden mdUp implementation='css'>
           <Drawer
             variant='temporary'
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -245,7 +239,7 @@ export default function SideNavigationBar() {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation='css'>
+        <Hidden smDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
