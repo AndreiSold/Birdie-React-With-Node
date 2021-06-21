@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
+import { useLocation } from 'react-router-dom';
 import {
   makeStyles,
   useTheme,
@@ -81,8 +82,11 @@ const useStyles = makeStyles((theme: Theme) =>
       'paddingLeft': '25px',
       'paddingRight': '25px',
       '&:hover': {
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: `${theme.palette.secondary.main} !important`,
       },
+    },
+    selectedItem: {
+      backgroundColor: theme.palette.secondary.light,
     },
     itemIcon: {
       color: theme.palette.primary.main,
@@ -156,6 +160,7 @@ export default function SideNavigationBar() {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -178,7 +183,14 @@ export default function SideNavigationBar() {
               <ListItem
                 button
                 key={navigationItem.text}
-                className={classes.item}
+                className={`${classes.item} ${
+                  (navigationItem.route === routes.homepage &&
+                    location.pathname === '/') ||
+                  (navigationItem.route !== routes.homepage &&
+                    location.pathname.includes(navigationItem.route))
+                    ? classes.selectedItem
+                    : ''
+                }`}
                 onClick={() => {
                   if (navigationItem.isAnchor) {
                     window.open(navigationItem.route);
