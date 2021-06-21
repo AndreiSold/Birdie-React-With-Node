@@ -13,9 +13,14 @@ import {
   Store,
 } from 'redux';
 import thunk from 'redux-thunk';
+import {
+  careRecipientsReducer,
+  CareRecipientsState,
+} from './reducers/careRecipientsReducer';
 
 export interface AppState {
   router: RouterState;
+  careRecipients: CareRecipientsState;
 }
 
 export const publicUrl = process.env.PUBLIC_URL || '';
@@ -27,6 +32,7 @@ export const history =
 const createRootReducer = (history: History) =>
   combineReducers<AppState>({
     router: !isEmpty(history) ? connectRouter(history) : ({} as any),
+    careRecipients: careRecipientsReducer,
   });
 
 const configureStore = (initialState?: AppState): Store<AppState, any> => {
