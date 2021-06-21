@@ -17,7 +17,6 @@ import routes from './routes';
 import store, { history } from './store';
 import Homepage from './pages/Homepage';
 import CareRecipients from './pages/CareRecipients';
-import Contact from './pages/Contact';
 import CareRecipient from './pages/CareRecipient';
 import NotFound from './pages/NotFound';
 
@@ -53,7 +52,6 @@ const App = () => {
                             path={routes.careRecipients.individual}
                             component={CareRecipient}
                           />
-                          <Route path={routes.contact} component={Contact} />
                           <Route path='*' component={NotFound} />
                         </Switch>
                       </Box>

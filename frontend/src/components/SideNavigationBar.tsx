@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import PeopleIcon from '@material-ui/icons/People';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { useDispatch } from 'react-redux';
@@ -142,10 +142,11 @@ const navigationGroups: NavigationGroup[] = [
         isAnchor: true,
       },
       {
-        text: 'Contact info',
-        icon: <ContactMailIcon />,
-        route: routes.contact,
-        isAnchor: false,
+        text: 'LinkedIn',
+        icon: <LinkedInIcon />,
+        route:
+          'https://www.linkedin.com/in/andrei-alexandru-%C8%99old-25072593/',
+        isAnchor: true,
       },
     ],
   },
