@@ -1,6 +1,7 @@
 import { Box } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { loadAllCareRecipients } from '../store/actions/careRecipientsActions';
 import {
   careRecipientsLoadingSelector,
@@ -18,7 +19,11 @@ const CareRecipients: React.FC = () => {
 
   return (
     <Box>
-      {careRecipientsLoading ? 'Loading' : Object.keys(careRecipients).length}
+      {careRecipientsLoading ? (
+        <LoadingSpinner />
+      ) : (
+        Object.keys(careRecipients).length
+      )}
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import { CareRecipient } from '../models/careRecipient';
 import axios from 'axios';
+import { sleep } from '../utils/sleeper';
 
 class CareRecipientsService {
   private baseUrl: string;
@@ -9,6 +10,7 @@ class CareRecipientsService {
   }
 
   async getAllCareRecipients(): Promise<CareRecipient[]> {
+    await sleep(1000);
     return (await axios.get(`${this.baseUrl}/care-recipients`)).data;
   }
 }
