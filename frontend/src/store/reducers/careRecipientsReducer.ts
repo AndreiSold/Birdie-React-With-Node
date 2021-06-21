@@ -30,6 +30,13 @@ export const careRecipientsReducer: Reducer<
         loading: false,
       };
     }
+    case CareRecipientsActionTypes.LOAD_ALL_CARE_RECIPIENTS_ERROR: {
+      return {
+        ...state,
+        careRecipients: {},
+        loading: false,
+      };
+    }
     case CareRecipientsActionTypes.SET_LOADING: {
       return {
         ...state,

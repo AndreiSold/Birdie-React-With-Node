@@ -7,6 +7,7 @@ import { careRecipientsService } from '../../services/careRecipientsService';
 export enum CareRecipientsActionTypes {
   LOAD_ALL_CARE_RECIPIENTS = '[Care Recipients] Load all care recipients',
   LOAD_ALL_CARE_RECIPIENTS_SUCCESS = '[Care Recipients] Load all care recipients success',
+  LOAD_ALL_CARE_RECIPIENTS_ERROR = '[Care Recipients] Load all care recipients error',
   SET_LOADING = '[Care Recipients] Care recipients loading',
 }
 
@@ -19,15 +20,13 @@ export const loadAllCareRecipients: ActionCreator<
 > = () => {
   return async (dispatch: Dispatch, getState) => {
     if (Object.keys(getState().careRecipients.careRecipients).length === 0) {
-      debugger;
       try {
         dispatch(setCareRecipientsLoading(true));
         const careRecipients: CareRecipient[] =
           await careRecipientsService.getAllCareRecipients();
         dispatch(loadAllCareRecipientsSuccess(careRecipients));
       } catch (err) {
-        debugger;
-        dispatch(loadAllCareRecipientsSuccess([]));
+        dispatch(loadAllCareRecipientsError());
         console.error(err);
       }
     }
@@ -46,6 +45,15 @@ export const loadAllCareRecipientsSuccess = (
   data,
 });
 
+export interface LoadAllCareRecipientsErrorAction {
+  type: typeof CareRecipientsActionTypes.LOAD_ALL_CARE_RECIPIENTS_ERROR;
+}
+
+export const loadAllCareRecipientsError =
+  (): LoadAllCareRecipientsErrorAction => ({
+    type: CareRecipientsActionTypes.LOAD_ALL_CARE_RECIPIENTS_ERROR,
+  });
+
 export interface SetCareRecipientsLoadingAction {
   type: typeof CareRecipientsActionTypes.SET_LOADING;
   payload: boolean;
@@ -58,5 +66,6 @@ export const setCareRecipientsLoading = (loading: boolean) => ({
 
 export type CareRecipientsActions =
   | LoadAllCareRecipientsAction
-  | SetCareRecipientsLoadingAction
-  | LoadAllCareRecipientsSuccessAction;
+  | LoadAllCareRecipientsSuccessAction
+  | LoadAllCareRecipientsErrorAction
+  | SetCareRecipientsLoadingAction;
