@@ -30,22 +30,28 @@ const App = () => {
                 <ConnectedRouter history={history}>
                   <Box display='flex'>
                     <SideNavigationBar></SideNavigationBar>
-                    <Switch>
-                      <Route
-                        exact
-                        path={routes.homepage}
-                        component={Homepage}
-                      />
-                      <Route
-                        path={routes.careRecipients.base}
-                        component={CareRecipients}
-                      />
-                      <Route
-                        path={routes.careRecipients.individual}
-                        component={TestParagraph}
-                      />
-                      <Route path={routes.contact} component={Contact} />
-                    </Switch>
+                    <Box
+                      minWidth='calc(100% - 250px)'
+                      minHeight='100%'
+                      paddingTop={12}
+                    >
+                      <Switch>
+                        <Route
+                          exact
+                          path={routes.homepage}
+                          component={Homepage}
+                        />
+                        <Route
+                          path={routes.careRecipients.base}
+                          component={CareRecipients}
+                        />
+                        <Route
+                          path={routes.careRecipients.individual}
+                          component={TestParagraph}
+                        />
+                        <Route path={routes.contact} component={Contact} />
+                      </Switch>
+                    </Box>
                   </Box>
                 </ConnectedRouter>
               </Provider>
