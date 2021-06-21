@@ -8,7 +8,7 @@ const BackgroundImage = styled(Box)`
   background-image: url('${props.path}');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 `}
 `;
 
