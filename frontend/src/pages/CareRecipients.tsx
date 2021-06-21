@@ -22,7 +22,7 @@ const CareRecipients: React.FC = () => {
 
   return (
     <Box>
-      {careRecipientsLoading ? (
+      {careRecipientsLoading || !careRecipients ? (
         <LoadingSpinner />
       ) : (
         Object.keys(careRecipients).map((careRecipientId) => (

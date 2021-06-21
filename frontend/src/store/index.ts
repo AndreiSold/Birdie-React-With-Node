@@ -17,10 +17,12 @@ import {
   careRecipientsReducer,
   CareRecipientsState,
 } from './reducers/careRecipientsReducer';
+import { eventsReducer, EventsState } from './reducers/eventsReducer';
 
 export interface AppState {
   router: RouterState;
   careRecipients: CareRecipientsState;
+  events: EventsState;
 }
 
 export const publicUrl = process.env.PUBLIC_URL || '';
@@ -33,6 +35,7 @@ const createRootReducer = (history: History) =>
   combineReducers<AppState>({
     router: !isEmpty(history) ? connectRouter(history) : ({} as any),
     careRecipients: careRecipientsReducer,
+    events: eventsReducer,
   });
 
 const configureStore = (initialState?: AppState): Store<AppState, any> => {

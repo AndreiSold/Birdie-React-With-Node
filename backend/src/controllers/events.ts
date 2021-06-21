@@ -12,7 +12,7 @@ const eventsBasePath = '/events';
 
 eventsController
   .get(
-    `${eventsBasePath}/care-recipient/:careRecipientId/moods`,
+    `${eventsBasePath}/care-recipient/:careRecipientId/mood-observations`,
     (req, res) => {
       void (async (): Promise<void> => {
         try {
