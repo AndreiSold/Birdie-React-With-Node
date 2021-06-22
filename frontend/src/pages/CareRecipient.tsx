@@ -59,6 +59,7 @@ const CareRecipient: React.FC = () => {
         },
         options: {
           responsive: true,
+          events: [],
           plugins: {
             title: {
               display: true,
