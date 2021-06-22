@@ -35,6 +35,7 @@ const ImageBox = styled(Box)`
   margin-top: 55px;
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     margin-top: 0px !important;
+    min-height: 300px;
   }
 `}
 `;
