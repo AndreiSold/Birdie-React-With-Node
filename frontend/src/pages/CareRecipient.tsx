@@ -13,6 +13,9 @@ import { getIndexForMood, getMoodFromIndex } from '../utils/mood-processor';
 import { getDateFromTimestamp } from '../utils/time-date';
 import { theme } from '../AppTheme';
 import { Mood } from '../enums/mood';
+import CustomButton from '../styled-components/CustomButton';
+import { push } from 'connected-react-router';
+import routes from '../routes';
 
 const CareRecipient: React.FC = () => {
   const dispatch = useDispatch();
@@ -106,6 +109,13 @@ const CareRecipient: React.FC = () => {
         <LoadingSpinner />
       ) : (
         <Box>
+          <CustomButton
+            onClick={() => {
+              dispatch(push(routes.careRecipients.base));
+            }}
+          >
+            Back to Care Recipients
+          </CustomButton>
           <canvas id='myChart'></canvas>
         </Box>
       )}
