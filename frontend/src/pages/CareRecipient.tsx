@@ -77,6 +77,7 @@ const CareRecipient: React.FC = () => {
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           events: [],
           plugins: {
             title: {
@@ -172,8 +173,8 @@ const CareRecipient: React.FC = () => {
           <Box marginBottom='15px'>
             <SmallTitle>Mood observations</SmallTitle>
           </Box>
-          <Box width='75%' height='auto'>
-            <canvas id='myChart'></canvas>
+          <Box width='100%' maxHeight='300px'>
+            <canvas id='myChart' width='100%' height='300px' />
           </Box>
           <Box marginTop='30px' marginBottom='15px'>
             <SmallTitle>Events history</SmallTitle>

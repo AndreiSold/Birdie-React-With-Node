@@ -61,7 +61,7 @@ const CareRecipients: React.FC = () => {
                 related to them.
               </Subtitle>
             </SubtitleWrapper>
-            <Box marginTop='40px' textAlign='center'>
+            <Box marginTop='40px' textAlign='center' marginBottom='50px'>
               {Object.keys(careRecipients).map((careRecipientId) => (
                 <CustomButton
                   key={careRecipients[careRecipientId].id}
