@@ -9,5 +9,5 @@ export const SELECT_ALL_EVENTS_FOR_RECIPIENT_ID = `
   SELECT * 
   FROM events 
   WHERE care_recipient_id=':careRecipientId' 
-  ORDER BY timestamp ASC;
+  ORDER BY timestamp DESC;
 `;
