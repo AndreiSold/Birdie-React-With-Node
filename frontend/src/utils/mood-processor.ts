@@ -1,6 +1,6 @@
 import { Mood } from '../enums/mood';
 
-const AESTHETIC_OFFSET = 0.015;
+const AESTHETIC_OFFSET = 0.0175;
 
 export const getIndexForMood = (mood: Mood): number => {
   switch (mood) {
