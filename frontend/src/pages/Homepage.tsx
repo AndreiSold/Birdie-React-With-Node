@@ -4,7 +4,7 @@ import CustomTitle from '../styled-components/CustomTitle';
 import styled from 'styled-components';
 import CustomSubtitle from '../styled-components/CustomSubtitle';
 
-const TitleBox = styled(Box)`
+const TitleWrapper = styled(Box)`
   ${({ theme }) => `
   margin-top: 160px;
   margin-bottom: 35px;
@@ -17,7 +17,7 @@ const TitleBox = styled(Box)`
 `}
 `;
 
-const SubtitleBox = styled(Box)`
+const SubtitleWrapper = styled(Box)`
   ${({ theme }) => `
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     text-align: center;
@@ -27,7 +27,7 @@ const SubtitleBox = styled(Box)`
 `}
 `;
 
-const ImageBox = styled(Box)`
+const ImageWrapper = styled(Box)`
   ${({ theme }) => `
   display: flex;
   width: 100%;
@@ -44,21 +44,21 @@ const Homepage: React.FC = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={5}>
-        <TitleBox>
+        <TitleWrapper>
           <CustomTitle>CONNECTING FAMILIES WITH HOMECARE SOFTWARE</CustomTitle>
-        </TitleBox>
-        <SubtitleBox>
+        </TitleWrapper>
+        <SubtitleWrapper>
           <CustomSubtitle>
             Andrew's Birdie is your all-in-one homecare software solution
             designed to help families stay more connected and help seniors live
             happily within their own home.
           </CustomSubtitle>
-        </SubtitleBox>
+        </SubtitleWrapper>
       </Grid>
       <Grid item xs={12} md={7}>
-        <ImageBox>
+        <ImageWrapper>
           <BackgroundImage path='/images/homepage-picture.png' />
-        </ImageBox>
+        </ImageWrapper>
       </Grid>
     </Grid>
   );
