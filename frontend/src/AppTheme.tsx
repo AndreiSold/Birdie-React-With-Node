@@ -7,7 +7,7 @@ export const theme = createMuiTheme({
       sm: 576,
       md: 960,
       lg: 1200,
-      xl: 1920,
+      xl: 1800,
     },
   },
   palette: {

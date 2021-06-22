@@ -6,8 +6,11 @@ import CustomSubtitle from '../styled-components/CustomSubtitle';
 
 const TitleWrapper = styled(Box)`
   ${({ theme }) => `
-  margin-top: 160px;
+  margin-top: 250px;
   margin-bottom: 35px;
+  @media only screen and (max-width: ${theme.breakpoints.values.xl}px) {
+    margin-top: 175px !important;
+  }
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     margin-top: 20px !important;
     text-align: center;
@@ -32,7 +35,10 @@ const ImageWrapper = styled(Box)`
   display: flex;
   width: 100%;
   min-height: 500px;
-  margin-top: 55px;
+  margin-top: 150px;
+  @media only screen and (max-width: ${theme.breakpoints.values.xl}px) {
+    margin-top: 60px !important;
+  }
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     margin-top: 0px !important;
     min-height: 300px;
