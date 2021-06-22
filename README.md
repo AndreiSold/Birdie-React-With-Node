@@ -1,3 +1,7 @@
+## Deployment URL
+
+https://andrews-birdie-frontend.herokuapp.com/
+
 # Birdie Developer Test
 
 We would like to thank you for taking our developer test. We understand that candidates will often have many of these tests to complete, therefore we think it's important to cut straight to the important stuff.
@@ -18,8 +22,8 @@ These could be anything from the recording of their mood (happy, sad, bored, con
 Each of these observations are recorded as events in our database. Here's an example of a mood observation recorded
 in this event format:
 
-``` json
-{  
+```json
+{
    "id":"decaa026-2ce5-49cb-aff9-92326b85a98c",
    "event_type":"mood_observation",
    "visit_id":"39b94aab-cc35-4874-807f-c23472aec663",
@@ -46,7 +50,7 @@ The database (we should have sent you credentials) contains some of these observ
 
 ## Challenge
 
-*Display the information to a family member*
+_Display the information to a family member_
 
 #### Your challenge is to clone this repository and create a small web application to visualize these observations, so that looking at it is valuable to a family member of this care recipient
 
@@ -56,7 +60,7 @@ This could mean presenting it in the following forms:
 - A graph
 - A timeline
 
- Or any other way/combination of those. We are test driven here at Birdie so please make sure you write tests to validate your work.
+Or any other way/combination of those. We are test driven here at Birdie so please make sure you write tests to validate your work.
 
 ## Deliverables
 
@@ -98,9 +102,9 @@ Here's the technical stack this boilerplate was made with:
    npm run dev
    ```
 
-2. Start the React app  (Run the following commands within the `front-end` folder)
+2. Start the React app (Run the following commands within the `front-end` folder)
 
-    a. Install the dependencies
+   a. Install the dependencies
 
    ```bash
    npm install
