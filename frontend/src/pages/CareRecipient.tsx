@@ -11,14 +11,20 @@ import {
   eventsLoadingSelector,
 } from '../store/selectors';
 import { getIndexForMood, getMoodFromIndex } from '../utils/mood-processor';
-import { getDateFromTimestamp } from '../utils/time-date';
+import {
+  getDateAndTimeFromTimestamp,
+  getDateFromTimestamp,
+} from '../utils/time-date';
 import { theme } from '../AppTheme';
 import { Mood } from '../enums/mood';
 import CustomButton from '../styled-components/CustomButton';
 import { push } from 'connected-react-router';
 import routes from '../routes';
-import CustomTitle from '../styled-components/CustomTitle';
+import CustomTitle from '../styled-components/Title';
 import { loadAllCareRecipients } from '../store/actions/careRecipientsActions';
+import { DataGrid } from '@material-ui/data-grid';
+import { getDescriptionForEventType } from '../utils/event-type-processor';
+import SmallTitle from '../styled-components/SmallTitle';
 
 const CareRecipient: React.FC = () => {
   const dispatch = useDispatch();
@@ -71,11 +77,12 @@ const CareRecipient: React.FC = () => {
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           events: [],
           plugins: {
             title: {
-              display: true,
-              text: 'Mood Observations',
+              display: false,
+              text: 'Mood Observations', //Switch to true if the title should be displayed
             },
             legend: {
               display: false,
@@ -126,6 +133,21 @@ const CareRecipient: React.FC = () => {
     </CustomButton>
   );
 
+  const tableColumns = [
+    { field: 'timestamp', headerName: 'Timestamp', width: 200 },
+    {
+      field: 'eventType',
+      headerName: 'Event type',
+      width: 200,
+      disableClickEventBubbling: true,
+    },
+    {
+      field: 'message',
+      headerName: 'Message',
+      width: 700,
+    },
+  ];
+
   return (
     <Box>
       {eventsLoading || !events ? (
@@ -143,14 +165,38 @@ const CareRecipient: React.FC = () => {
           {BackToCareRecipientsButton}
           <Box marginBottom='20px' marginTop='20px'>
             {careRecipient ? (
-              <CustomTitle>
-                Care Recipient: {careRecipient.fullName}
-              </CustomTitle>
+              <CustomTitle>{careRecipient.fullName}</CustomTitle>
             ) : (
               <></>
             )}
           </Box>
-          <canvas id='myChart'></canvas>
+          <Box marginBottom='15px'>
+            <SmallTitle>Mood observations</SmallTitle>
+          </Box>
+          <Box width='100%' maxHeight='300px'>
+            <canvas id='myChart' width='100%' height='300px' />
+          </Box>
+          <Box marginTop='30px' marginBottom='15px'>
+            <SmallTitle>Events history</SmallTitle>
+          </Box>
+          <Box width='100%' marginBottom='50px'>
+            <DataGrid
+              rows={events.events.map((event) => {
+                return {
+                  timestamp: getDateAndTimeFromTimestamp(event.timestamp),
+                  eventType: getDescriptionForEventType(event.eventType),
+                  message: event.message,
+                  id: event.id,
+                };
+              })}
+              columns={tableColumns}
+              pageSize={5}
+              isRowSelectable={(_params: any) => {
+                return false;
+              }}
+              autoHeight={true}
+            />
+          </Box>
         </Box>
       )}
     </Box>
