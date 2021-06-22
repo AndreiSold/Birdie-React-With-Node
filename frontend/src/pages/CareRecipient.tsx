@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { loadAllEventsForCareRecipient } from '../store/actions/eventsActions';
 import {
+  careRecipientByIdSelector,
   eventsByCareRecipientIdSelector,
   eventsLoadingSelector,
 } from '../store/selectors';
@@ -16,6 +17,8 @@ import { Mood } from '../enums/mood';
 import CustomButton from '../styled-components/CustomButton';
 import { push } from 'connected-react-router';
 import routes from '../routes';
+import CustomTitle from '../styled-components/CustomTitle';
+import { loadAllCareRecipients } from '../store/actions/careRecipientsActions';
 
 const CareRecipient: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,13 +28,21 @@ const CareRecipient: React.FC = () => {
     eventsByCareRecipientIdSelector.bind(null, careRecipientId)
   );
   const [chart, setChart] = useState(new Chart());
+  const careRecipient = useSelector(
+    careRecipientByIdSelector.bind(null, careRecipientId)
+  );
 
   useEffect(() => {
+    dispatch(loadAllCareRecipients());
     dispatch(loadAllEventsForCareRecipient(careRecipientId));
   }, [dispatch, careRecipientId]);
 
   useEffect(() => {
-    if (events) {
+    if (
+      events &&
+      Object.keys(events.events).length > 0 &&
+      Object.keys(events.moodObservations).length > 0
+    ) {
       if (chart) {
         chart.destroy();
       }
@@ -104,19 +115,40 @@ const CareRecipient: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events]);
 
+  const BackToCareRecipientsButton = (
+    <CustomButton
+      onClick={() => {
+        dispatch(push(routes.careRecipients.base));
+      }}
+    >
+      Back to Care Recipients
+    </CustomButton>
+  );
+
   return (
     <Box>
       {eventsLoading || !events ? (
         <LoadingSpinner />
+      ) : Object.keys(events.events).length === 0 &&
+        Object.keys(events.moodObservations).length === 0 ? (
+        <>
+          {BackToCareRecipientsButton}
+          <CustomTitle>
+            There is no care recipient with ID: '{careRecipientId}'!
+          </CustomTitle>
+        </>
       ) : (
         <Box>
-          <CustomButton
-            onClick={() => {
-              dispatch(push(routes.careRecipients.base));
-            }}
-          >
-            Back to Care Recipients
-          </CustomButton>
+          {BackToCareRecipientsButton}
+          <Box marginBottom='20px' marginTop='20px'>
+            {careRecipient ? (
+              <CustomTitle>
+                Care Recipient: {careRecipient.fullName}
+              </CustomTitle>
+            ) : (
+              <></>
+            )}
+          </Box>
           <canvas id='myChart'></canvas>
         </Box>
       )}
