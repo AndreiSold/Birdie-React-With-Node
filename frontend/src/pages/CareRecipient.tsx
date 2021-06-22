@@ -53,6 +53,7 @@ const CareRecipient: React.FC = () => {
             {
               backgroundColor: 'white',
               borderColor: theme.palette.primary.main,
+              stepped: true,
               data: events.moodObservations
                 .filter(
                   (moodObservation) =>
