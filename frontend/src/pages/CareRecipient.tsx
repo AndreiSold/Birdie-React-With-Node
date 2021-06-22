@@ -27,7 +27,7 @@ const CareRecipient: React.FC = () => {
   const events = useSelector(
     eventsByCareRecipientIdSelector.bind(null, careRecipientId)
   );
-  const [chart, setChart] = useState(new Chart());
+  const [chart, setChart] = useState(undefined);
   const careRecipient = useSelector(
     careRecipientByIdSelector.bind(null, careRecipientId)
   );
@@ -44,7 +44,7 @@ const CareRecipient: React.FC = () => {
       Object.keys(events.moodObservations).length > 0
     ) {
       if (chart) {
-        chart.destroy();
+        (chart as any).destroy();
       }
       const config = {
         type: 'line',
@@ -110,7 +110,7 @@ const CareRecipient: React.FC = () => {
 
     return () => {
       if (chart) {
-        chart.destroy();
+        (chart as any).destroy();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
