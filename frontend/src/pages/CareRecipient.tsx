@@ -20,10 +20,11 @@ import { Mood } from '../enums/mood';
 import CustomButton from '../styled-components/CustomButton';
 import { push } from 'connected-react-router';
 import routes from '../routes';
-import CustomTitle from '../styled-components/CustomTitle';
+import CustomTitle from '../styled-components/Title';
 import { loadAllCareRecipients } from '../store/actions/careRecipientsActions';
 import { DataGrid } from '@material-ui/data-grid';
 import { getDescriptionForEventType } from '../utils/event-type-processor';
+import SmallTitle from '../styled-components/SmallTitle';
 
 const CareRecipient: React.FC = () => {
   const dispatch = useDispatch();
@@ -79,8 +80,8 @@ const CareRecipient: React.FC = () => {
           events: [],
           plugins: {
             title: {
-              display: true,
-              text: 'Mood Observations',
+              display: false,
+              text: 'Mood Observations', //Switch to true if the title should be displayed
             },
             legend: {
               display: false,
@@ -163,15 +164,21 @@ const CareRecipient: React.FC = () => {
           {BackToCareRecipientsButton}
           <Box marginBottom='20px' marginTop='20px'>
             {careRecipient ? (
-              <CustomTitle>
-                Care Recipient: {careRecipient.fullName}
-              </CustomTitle>
+              <CustomTitle>{careRecipient.fullName}</CustomTitle>
             ) : (
               <></>
             )}
           </Box>
-          <canvas id='myChart'></canvas>
-          <Box width='100%' marginTop='50px' marginBottom='50px'>
+          <Box marginBottom='15px'>
+            <SmallTitle>Mood observations</SmallTitle>
+          </Box>
+          <Box width='75%' height='auto'>
+            <canvas id='myChart'></canvas>
+          </Box>
+          <Box marginTop='30px' marginBottom='15px'>
+            <SmallTitle>Events history</SmallTitle>
+          </Box>
+          <Box width='100%' marginBottom='50px'>
             <DataGrid
               rows={events.events.map((event) => {
                 return {

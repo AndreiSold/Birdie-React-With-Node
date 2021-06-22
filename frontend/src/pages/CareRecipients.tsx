@@ -12,8 +12,8 @@ import {
 } from '../store/selectors';
 import BackgroundImage from '../styled-components/BackgroundImage';
 import CustomButton from '../styled-components/CustomButton';
-import CustomSubtitle from '../styled-components/CustomSubtitle';
-import CustomTitle from '../styled-components/CustomTitle';
+import Subtitle from '../styled-components/Subtitle';
+import Title from '../styled-components/Title';
 import ImageWrapper from '../styled-components/ImageWrapper';
 import SubtitleWrapper from '../styled-components/SubtitleWrapper';
 import TitleWrapper from '../styled-components/TitleWrapper';
@@ -52,14 +52,14 @@ const CareRecipients: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={5}>
             <CustomTitleWrapper>
-              <CustomTitle>OUR CARE RECIPIENTS</CustomTitle>
+              <Title>OUR CARE RECIPIENTS</Title>
             </CustomTitleWrapper>
             <SubtitleWrapper>
-              <CustomSubtitle>
+              <Subtitle>
                 Select one of our care recipients in order to see statistics
                 regarding their general mood and the full history of events
                 related to them.
-              </CustomSubtitle>
+              </Subtitle>
             </SubtitleWrapper>
             <Box marginTop='40px' textAlign='center'>
               {Object.keys(careRecipients).map((careRecipientId) => (
