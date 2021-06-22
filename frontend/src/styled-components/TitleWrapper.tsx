@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const TitleWrapper = styled(Box)`
   ${({ theme }) => `
-  margin-top: 250px;
+  margin-top: 225px;
   margin-bottom: 35px;
   @media only screen and (max-width: ${theme.breakpoints.values.xl}px) {
-    margin-top: 175px !important;
+    margin-top: 150px !important;
   }
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     margin-top: 20px !important;

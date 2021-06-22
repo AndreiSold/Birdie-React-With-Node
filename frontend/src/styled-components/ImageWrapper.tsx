@@ -6,9 +6,9 @@ const ImageWrapper = styled(Box)`
   display: flex;
   width: 100%;
   min-height: 500px;
-  margin-top: 150px;
+  margin-top: 120px;
   @media only screen and (max-width: ${theme.breakpoints.values.xl}px) {
-    margin-top: 60px !important;
+    margin-top: 40px !important;
   }
   @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
     margin-top: 0px !important;

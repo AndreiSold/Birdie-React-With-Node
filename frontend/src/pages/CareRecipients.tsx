@@ -29,9 +29,9 @@ const CareRecipients: React.FC = () => {
 
   const CustomTitleWrapper = styled(TitleWrapper)`
     ${({ theme }) => `
-    margin-top: 210px !important;
+    margin-top: 185px !important;
     @media only screen and (max-width: ${theme.breakpoints.values.xl}px) {
-      margin-top: 120px !important;
+      margin-top: 105px !important;
     }
     @media only screen and (max-width: ${theme.breakpoints.values.md}px) {
       margin-top: 15px !important;
