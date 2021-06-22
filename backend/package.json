@@ -12,7 +12,7 @@
     "clean": "rimraf lib && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "eslint . --ext .ts",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
     "start": "nodemon"
   },
