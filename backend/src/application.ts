@@ -8,7 +8,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://andrews-birdie-frontend.herokuapp.com/',
+  'https://andrews-birdie-frontend.herokuapp.com',
 ];
 
 const options: CorsOptions = {
