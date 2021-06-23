@@ -1,6 +1,10 @@
 {
   "baseUrl": "http://localhost:3000",
-  "testFiles": ["homepage.spec.ts", "care-recipients.spec.ts"],
+  "testFiles": [
+    "homepage.spec.ts",
+    "care-recipients.spec.ts",
+    "not-found.spec.ts"
+  ],
   "reporter": "mocha-junit-reporter",
   "reporterOptions": {
     "mochaFile": "cypress/reports/junit/test-results.[hash].xml",

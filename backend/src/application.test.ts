@@ -90,6 +90,17 @@ test('GET 500 /care-recipients', async () => {
     });
 });
 
+test('GET 404 /care-recipients-wrong', async () => {
+  await supertest(app)
+    .get('/care-recipients-wrong')
+    .expect(404)
+    .then((response: any) => {
+      expect(response.body.message).toEqual(
+        'There is no prepared endpoint having the path /care-recipients-wrong and HTTP method GET.'
+      );
+    });
+});
+
 test('GET 200 /events/care-recipient/:careRecipientId/mood-observations', async () => {
   jest
     .spyOn(repository, 'executeQuery')
