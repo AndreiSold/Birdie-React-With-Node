@@ -52,16 +52,21 @@ const CareRecipients: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={5}>
             <CustomTitleWrapper>
-              <Title>OUR CARE RECIPIENTS</Title>
+              <Title data-cy='title'>OUR CARE RECIPIENTS</Title>
             </CustomTitleWrapper>
             <SubtitleWrapper>
-              <Subtitle>
+              <Subtitle data-cy='subtitle'>
                 Select one of our care recipients in order to see statistics
                 regarding their general mood and the full history of events
                 related to them.
               </Subtitle>
             </SubtitleWrapper>
-            <Box marginTop='40px' textAlign='center' marginBottom='50px'>
+            <Box
+              marginTop='40px'
+              textAlign='center'
+              marginBottom='50px'
+              data-cy='care-recipients-container'
+            >
               {Object.keys(careRecipients).map((careRecipientId) => (
                 <CustomButton
                   key={careRecipients[careRecipientId].id}

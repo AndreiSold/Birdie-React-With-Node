@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "testFiles": ["homepage.spec.ts", "care-recipients.spec.ts"],
+  "reporter": "mocha-junit-reporter",
+  "reporterOptions": {
+    "mochaFile": "cypress/reports/junit/test-results.[hash].xml",
+    "testsuitesTitle": false
+  },
+  "chromeWebSecurity": false,
+  "video": false
+}

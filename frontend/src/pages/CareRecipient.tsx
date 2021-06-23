@@ -165,7 +165,9 @@ const CareRecipient: React.FC = () => {
           {BackToCareRecipientsButton}
           <Box marginBottom='20px' marginTop='20px'>
             {careRecipient ? (
-              <CustomTitle>{careRecipient.fullName}</CustomTitle>
+              <CustomTitle data-cy='care-recipient-name'>
+                {careRecipient.fullName}
+              </CustomTitle>
             ) : (
               <></>
             )}
@@ -174,12 +176,17 @@ const CareRecipient: React.FC = () => {
             <SmallTitle>Mood observations</SmallTitle>
           </Box>
           <Box width='100%' maxHeight='300px'>
-            <canvas id='myChart' width='100%' height='300px' />
+            <canvas
+              id='myChart'
+              width='100%'
+              height='300px'
+              data-cy='mood-observations-canvas'
+            />
           </Box>
           <Box marginTop='30px' marginBottom='15px'>
             <SmallTitle>Events history</SmallTitle>
           </Box>
-          <Box width='100%' marginBottom='50px'>
+          <Box width='100%' marginBottom='50px' data-cy='events-history-table'>
             <DataGrid
               rows={events.events.map((event) => {
                 return {

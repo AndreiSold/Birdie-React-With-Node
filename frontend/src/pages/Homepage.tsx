@@ -11,10 +11,12 @@ const Homepage: React.FC = () => {
     <Grid container spacing={2}>
       <Grid item xs={12} md={5}>
         <TitleWrapper>
-          <Title>CONNECTING FAMILIES WITH HOMECARE SOFTWARE</Title>
+          <Title data-cy='title'>
+            CONNECTING FAMILIES WITH HOMECARE SOFTWARE
+          </Title>
         </TitleWrapper>
         <SubtitleWrapper>
-          <Subtitle>
+          <Subtitle data-cy='subtitle'>
             Andrew's Birdie is your all-in-one homecare software solution
             designed to help families stay more connected and help seniors live
             happily within their own home.
