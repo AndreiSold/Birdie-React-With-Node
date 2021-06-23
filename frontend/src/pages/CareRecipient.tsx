@@ -22,7 +22,7 @@ import { push } from 'connected-react-router';
 import routes from '../routes';
 import CustomTitle from '../styled-components/Title';
 import { loadAllCareRecipients } from '../store/actions/careRecipientsActions';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridSortDirection } from '@material-ui/data-grid';
 import { getDescriptionForEventType } from '../utils/event-type-processor';
 import SmallTitle from '../styled-components/SmallTitle';
 
@@ -202,6 +202,12 @@ const CareRecipient: React.FC = () => {
                 return false;
               }}
               autoHeight={true}
+              sortModel={[
+                {
+                  field: 'timestamp',
+                  sort: 'desc' as GridSortDirection,
+                },
+              ]}
             />
           </Box>
         </Box>
