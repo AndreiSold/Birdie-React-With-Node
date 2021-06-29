@@ -136,7 +136,7 @@ const navigationGroups: NavigationGroup[] = [
       {
         text: 'Source Code',
         icon: <GitHubIcon />,
-        route: 'https://github.com/AndreiSold/birdie-test',
+        route: 'https://github.com/AndreiSold/Birdie-React-With-Node',
         isAnchor: true,
       },
       {
